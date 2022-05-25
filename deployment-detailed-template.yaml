@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: loko-nginx
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - name: loko-nginx
+          image: nginx:alpine
+          livenessPRobe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 15
+            timoutSeconds: 2
+            periodSeconds: 5
+            failureThreshhold: 1

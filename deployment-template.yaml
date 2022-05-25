@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+spec:
+  selector:
+  template:
+    spec:
+      containers:
+        - name: loko-nginx
+          image: nginx:alpine

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loko-nginx
+  labels:
+    app: nginx
+    rel: stable
+spec:
+  containers:
+    - name: loko-nginx
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+      resource:

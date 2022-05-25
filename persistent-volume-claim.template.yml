@@ -1,0 +1,31 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pv-dd-account-hdd-5g
+  annotations:
+    volume.beta.kubernetes.io/storage-class: accounthdd
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+      
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loko-nginx
+  labels:
+    app: storage
+spec:
+  containers:
+    - name: loko-nginx
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+      resource:
+  volumes:
+    - name: blobdisk01
+      persistentVolumeClaim:
+        claimName: pv-dd-account-hdd-5g

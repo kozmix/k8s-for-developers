@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loko-nginx
+  labels:
+    app: loko-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: loko-nginx
+  template:
+    metadata:
+      labels:
+        app: loko-nginx
+    spec:
+      containers:
+        - name: loko-nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
